@@ -18,7 +18,7 @@ pipenv shell
 ```json
 {
     "depts":"../depts/",
-	"people":"../people/"
+    "people":"../people/"
 }
 ```
 
