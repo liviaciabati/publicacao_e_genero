@@ -3,45 +3,47 @@ import json
 import time
 import csv
 
-from os import listdir, makedirs
-from os.path import isfile, join, exists
+from os import makedirs
+from os.path import join, exists, isfile
 
-def get_files(my_path):
-    file_names = [f for f in listdir(my_path) 
-                    if isfile(join(my_path, f)) and f[-5:] == '.json']
-    file_names.sort()
-    return file_names
+from general import get_files
 
 def main():
+    url_professors = 'https://uspdigital.usp.br/datausp/servicos/publico/citacoes/docentes/'
+
     headings = ['google',
                 'scopus',
                 'web_of_science',
                 'link_google',
                 'link_scopus',
-                'link_web_of_science', 
+                'link_web_of_science',
                 'cod_person_g',
                 'cod_person_s',
                 'cod_person_w',
                 'name'
     ]
-    
+
     wait_time = [3, 5, 7]
     s = requests.Session()
 
     with open('../config.json') as f:
         config = json.load(f)
 
+    if not exists(config['depts']):
+        print('Nenhum dado a ser recuperado.')
+        return 0
+
     if not exists(config['people']):
         makedirs(config['people'])
 
-    files = get_files(config['depts'])
+    files = get_files(config['depts'], 'json')
 
     if len(files) == 0:
         print('Nenhum dado a ser recuperado.')
         return 0
 
     # Procurando unidades recuperadas previamente
-    units_recovered_file = join(config['people'],'units_recovered.txt')
+    units_recovered_file = join(config['people'], 'units_recovered.txt')
     if isfile(units_recovered_file):
         with open(units_recovered_file, 'r') as f:
             units = f.read().split(',')
@@ -52,7 +54,7 @@ def main():
     for file in files:
         unit = file.split('_').pop()[:-5]
         file_path = join(config['depts'], file)
-       
+
         if unit in units:
             print('Unidade recuperada previamente: ', unit, flush=True)
             continue
@@ -67,11 +69,11 @@ def main():
             else:
                 print('Sem dados da unidade: ', unit, flush=True)
                 units.append(unit)
-                
+
                 with open(join(config['people'], 'units_recovered.txt'), 'w', newline='') as f:
                     print('Escrevendo arquivo com unidade recuperada...')
                     f.write(','.join(units))
-                
+
                 continue
 
         # Recuperando dados de pesquisadores por unidade
@@ -79,23 +81,23 @@ def main():
             for dept in data:
                 print('Departamento: ', dept['codset'], flush=True)
 
-                url_g = 'https://uspdigital.usp.br/datausp/servicos/publico/citacoes/docentes/'+ str(unit) +'/'+ str(dept['codset']) +'/1998/2018/G'
-                url_s = 'https://uspdigital.usp.br/datausp/servicos/publico/citacoes/docentes/'+ str(unit) +'/'+ str(dept['codset']) +'/1998/2018/S'
-                url_w = 'https://uspdigital.usp.br/datausp/servicos/publico/citacoes/docentes/'+ str(unit) +'/'+ str(dept['codset']) +'/1998/2018/W'
+                url_g = url_professors+ str(unit) +'/'+ str(dept['codset']) +'/1998/2018/G'
+                url_s = url_professors+ str(unit) +'/'+ str(dept['codset']) +'/1998/2018/S'
+                url_w = url_professors+ str(unit) +'/'+ str(dept['codset']) +'/1998/2018/W'
 
                 google = []
                 scopus = []
                 web_of_science = []
                 name = []
-                
+
                 link_google = []
                 link_scopus = []
                 link_web_of_science = []
-                
+
                 cod_person_g = []
                 cod_person_s = []
                 cod_person_w = []
-                
+
                 time.sleep(wait_time[0])
                 try:
                     response = s.get(url_g)
@@ -106,15 +108,15 @@ def main():
                 if len(lista_g) > 0:
                     for person in lista_g:
                         cod_person_g.append(person['codpes'])
-                        
+
                         google.append(
-                            person['idfpesfte'] 
+                            person['idfpesfte']
                             if person ['idfpesfte'] != None else '')
-                        
+
                         link_google.append(
-                            'http://scholar.google.com/citations?user='+ person['idfpesfte'] +'&hl=en' 
+                            'http://scholar.google.com/citations?user='+ person['idfpesfte'] +'&hl=en'
                             if person['idfpesfte'] != None else '')
-                
+
                 time.sleep(wait_time[1])
                 try:
                     response = s.get(url_s)
@@ -125,14 +127,14 @@ def main():
                 if len(lista_s) > 0:
                     for person in lista_s:
                         cod_person_s.append(person['codpes'])
-                        
-                        scopus.append(person['idfpesfte'] 
-                        if person['idfpesfte'] != None 
-                        else '')                    
-                        
-                        link_scopus.append('https://www.scopus.com/authid/detail.url?authorId=' + person['idfpesfte'] 
+
+                        scopus.append(person['idfpesfte']
+                        if person['idfpesfte'] != None
+                        else '')
+
+                        link_scopus.append('https://www.scopus.com/authid/detail.url?authorId=' + person['idfpesfte']
                         if person['idfpesfte'] != None else '')
-               
+
                 time.sleep(wait_time[2])
                 try:
                     response = s.get(url_w)
@@ -143,22 +145,22 @@ def main():
                 if len(lista_w) > 0:
                     for person in lista_w:
                         cod_person_w.append(person['codpes'])
-                        
-                        web_of_science.append(person['idfpesfte'] 
-                        if person['idfpesfte'] != None 
-                        else '')                    
-                        
-                        link_web_of_science.append('http://www.researcherid.com/rid/' + person['idfpesfte'] 
-                        if person['idfpesfte'] != None else '')           
-                        
+
+                        web_of_science.append(person['idfpesfte']
+                        if person['idfpesfte'] != None
+                        else '')
+
+                        link_web_of_science.append('http://www.researcherid.com/rid/' + person['idfpesfte']
+                        if person['idfpesfte'] != None else '')
+
                         name.append(person['nompes'])
-                
+
                 information = zip(google,
                                     scopus,
                                     web_of_science,
                                     link_google,
                                     link_scopus,
-                                    link_web_of_science,            
+                                    link_web_of_science,
                                     cod_person_g,
                                     cod_person_s,
                                     cod_person_w,
@@ -169,10 +171,10 @@ def main():
                     csv_writer.writerow(headings)
                     if information:
                         csv_writer.writerows(information)
-        
+
         print('Dados recuperados da unidade: ', unit, flush=True)
         units.append(unit)
-        
+
         with open(join(config['people'], 'units_recovered.txt'), 'w', newline='') as f:
             print('Escrevendo arquivo com unidade recuperada...')
             f.write(','.join(units))
