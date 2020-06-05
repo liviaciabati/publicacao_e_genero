@@ -37,8 +37,14 @@ pipenv shell
 python retrieve_people.py
 ```
 
-### Obtenha os ids publons com:
+### Obtenha os ids publons
 
 ```
 python convert_id_publons.py
+```
+
+### Remova ids publons duplicados
+
+```
+python remove_duplicates.py
 ```
