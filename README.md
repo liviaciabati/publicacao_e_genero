@@ -18,7 +18,8 @@ pipenv shell
 ```json
 {
     "depts":"../depts/",
-    "people":"../people/"
+    "people":"../people/",
+    "output":"../output/"
 }
 ```
 
@@ -34,4 +35,10 @@ pipenv shell
 
 ```
 python retrieve_people.py
+```
+
+### Obtenha os ids publons com:
+
+```
+python convert_id_publons.py
 ```
