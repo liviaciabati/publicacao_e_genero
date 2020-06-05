@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+'''
+Created on Dec 2019
+Updated on Apr 2020
+
+@authors: Livia Ciabati, Ariane Sasso
+
+@objective: Recupera departamentos de cada unidade da USP
+'''
+
 import requests
 import json
 import time

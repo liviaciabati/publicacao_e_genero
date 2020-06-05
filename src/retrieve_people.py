@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+'''
+Created on Dec 2019
+Updated on Apr 2020
+
+@authors: Livia Ciabati, Ariane Sasso
+
+@objective: Recupera professores de cada departamento da USP
+'''
+
 import requests
 import json
 import time
@@ -42,7 +52,7 @@ def main():
         print('Nenhum dado a ser recuperado.')
         return 0
 
-    # Procurando unidades recuperadas previamente
+    # Procura unidades recuperadas previamente
     units_recovered_file = join(config['people'], 'units_recovered.txt')
     if isfile(units_recovered_file):
         with open(units_recovered_file, 'r') as f:
@@ -61,7 +71,7 @@ def main():
         else:
             print('Recuperando dados da unidade: ', unit, flush=True)
 
-        # Lendo arquivo de departamentos
+        # Lê arquivo de departamentos
         with open(file_path, 'r', encoding='utf-8') as f:
             if f.read(2) != '[]' and f.read(2) != '':
                 f.seek(0)
@@ -76,7 +86,7 @@ def main():
 
                 continue
 
-        # Recuperando dados de pesquisadores por unidade
+        # Recupera dados de pesquisadores por unidade
         if len(data) > 0:
             for dept in data:
                 print('Departamento: ', dept['codset'], flush=True)
