@@ -15,7 +15,7 @@ import json
 
 from bs4 import BeautifulSoup
 from os import makedirs
-from os.path import isfile, join, exists
+from os.path import join, exists
 
 from general import get_files
 
@@ -42,7 +42,7 @@ def main():
 
     # Procura departamentos recuperados previamente
     depts_recovered_file = join(config['output'], 'depts_recovered.txt')
-    if isfile(depts_recovered_file):
+    if exists(depts_recovered_file):
         with open(depts_recovered_file, 'r') as f:
             depts = f.read().split(',')
         print("Departamentos recuperados previamente: ", len(depts))
@@ -59,6 +59,7 @@ def main():
     i = 0
     for file in files:
         dept = file[:-4]
+        new_ids = []
 
         if dept in depts:
             print('Departamento recuperado previamente: ', dept, flush=True)

@@ -14,7 +14,7 @@ import time
 import csv
 
 from os import makedirs
-from os.path import join, exists, isfile
+from os.path import join, exists
 
 from general import get_files
 
@@ -54,7 +54,7 @@ def main():
 
     # Procura unidades recuperadas previamente
     units_recovered_file = join(config['people'], 'units_recovered.txt')
-    if isfile(units_recovered_file):
+    if exists(units_recovered_file):
         with open(units_recovered_file, 'r') as f:
             units = f.read().split(',')
     else:
