@@ -1,3 +1,12 @@
+# Pastas que receberão arquivos de Output
 depts/*
 people/*
+output/*
+
+# Arquivos de configuração
 config.json
+
+# Arquivos relcionados à execução do código
+src/.vscode
+src/__pycache__/
+

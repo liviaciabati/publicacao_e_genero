@@ -1,4 +1,5 @@
 {
     "depts":"../depts/",
-    "people":"../people/"
+    "people":"../people/",
+    "output":"../output/"
 }
