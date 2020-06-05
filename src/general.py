@@ -10,6 +10,8 @@ Updated on Apr 2020
 
 from os import listdir
 from os.path import isfile, join
+from unicodedata import normalize
+
 
 def get_files(my_path, file_type):
     file_names = [f for f in listdir(my_path)
@@ -17,3 +19,6 @@ def get_files(my_path, file_type):
                     and f.split('.').pop() == file_type]
     file_names.sort()
     return file_names
+
+def remove_accent_mark(txt):
+    return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')

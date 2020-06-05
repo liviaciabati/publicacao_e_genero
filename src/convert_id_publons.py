@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 from os import makedirs
 from os.path import join, exists
 
-from general import get_files
+from general import get_files, remove_accent_mark
 
 def main():
     print('Iniciando...')
@@ -87,21 +87,24 @@ def main():
                     page = BeautifulSoup(content, 'lxml')
                     # Pega o id pra refazer a url
                     num_usp = row[7]
+                    name = remove_accent_mark((row[9].lower().replace(' ','-')))
                     if page.find('meta', attrs={'property':'og:url'}) != None:
                         new_id = page.find('meta',
                         attrs={'property':'og:url'})['content'].split('/')[4]
 
                         new_ids.append({'num_usp': num_usp,
-                                        'id_publons': new_id})
+                                        'id_publons': new_id,
+                                        'name': name})
                     else:
                         new_ids.append({'num_usp': num_usp,
-                                        'id_publons': 'missing_id'})
+                                        'id_publons': 'missing_id',
+                                        'name': name})
 
         if new_ids:
             with open(join(config['output'], 'ids_publons.csv'), 'a', newline='') as f:
                 csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
                 for new_id in new_ids:
-                    csv_writer.writerow([new_id['num_usp'], new_id['id_publons']])
+                    csv_writer.writerow([new_id['num_usp'], new_id['id_publons'], new_id['name']])
 
         print('Dados recuperados do departamento: ', dept, flush=True)
         depts.append(dept)
