@@ -103,14 +103,14 @@ def main():
                 for new_id in new_ids:
                     csv_writer.writerow([new_id['num_usp'], new_id['id_publons']])
 
-        print('Dados recuperados da unidade: ', dept, flush=True)
+        print('Dados recuperados do departamento: ', dept, flush=True)
         depts.append(dept)
 
         with open(join(config['output'], 'depts_recovered.txt'), 'w', newline='') as f:
             print('Escrevendo arquivo com departamento recuperado...')
             f.write(','.join(depts))
 
-    print('Departamento recuperados: ', len(depts))
+    print('Departamentos recuperados: ', len(depts))
     print('Fim')
 
 if __name__ == '__main__':
