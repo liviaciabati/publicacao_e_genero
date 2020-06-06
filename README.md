@@ -56,7 +56,7 @@ python parse_publons_info.py
 Abra o arquivo: `publons_info_not_matching.csv` para verificar nomes que diferem entre USP e Publons
 
 ### Em seguida, remova esses ids
-#### Basta adicionar o vetor de números USP selecionados no script python abaixo)
+#### Basta adicionar o vetor de números USP selecionados no script python abaixo
 
 ```
 python filter_publons_info.py
