@@ -3,8 +3,10 @@
 Por favor, consulte a nossa publicação no [link]().
 
 Em seguide, explicamos passo-a-passo como realizar a coleta de dados e ánalise.
+
 É importante ressaltar que os dados que colhemos são de domínio público.
-Também é preciso saber que atualizações occorem tanto em páginas da USP quanto no Publons, portanto os números nos artigos podem diferir um pouco.
+
+Também é preciso saber que atualizações occorem tanto em páginas da USP quanto no Publons, portanto os números no artigo podem diferir.
 
 ## Primeio iniciei seu ambiente pip
 
