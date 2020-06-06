@@ -45,7 +45,7 @@ python retrieve_people.py
 python retrieve_publons_info.py
 ```
 
-### Remova ids publons duplicados, faltantes e verifica nomes que são não similares aos nomes usp
+### Remova ids publons duplicados, faltantes e verifique nomes que não são similares aos nomes usp
 
 ```
 python parse_publons_info.py
