@@ -3,6 +3,8 @@
 Por favor, consulte a nossa publicação no [link]().
 
 Em seguide, explicamos passo-a-passo como realizar a coleta de dados e ánalise.
+É importante ressaltar que os dados que colhemos são de domínio público.
+Também é preciso saber que atualizações occorem tanto em páginas da USP quanto no Publons, portanto os números nos artigos podem diferir um pouco.
 
 ## Primeio iniciei seu ambiente pip
 
@@ -40,11 +42,21 @@ python retrieve_people.py
 ### Obtenha os ids publons
 
 ```
-python convert_id_publons.py
+python retrieve_publons_info.py
 ```
 
-### Remova ids publons duplicados
+### Remova ids publons duplicados, faltantes e verifica nomes que são não similares aos nomes usp
 
 ```
-python remove_duplicates.py
+python parse_publons_info.py
+```
+
+### ATENÇÃO - Passo Manual
+
+É preciso verificar manualmente o arquivo: `publons_info_not_matching.csv` para verificar nomes que diferem entre USP e Publons
+
+### Em seguida, esses ids podem ser removidos (basta adicionar o vetor de números USP selecionados no arquivo)
+
+```
+python filter_publons_info.py
 ```
