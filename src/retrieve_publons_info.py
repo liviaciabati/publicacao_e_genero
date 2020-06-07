@@ -51,8 +51,8 @@ def main():
 
     publons_file = join(config['output'], 'publons_info.csv')
     if exists(publons_file) == False:
-        print('Novo arquivo')
-        with open(join(config['output'], 'publons_info.csv'), 'w', newline='') as f:
+        print('Novo arquivo criado.')
+        with open(publons_file, 'w', newline='') as f:
             csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
             csv_writer.writerow(['usp_id', 'usp_name', 'publons_id', 'publons_name'])
 
@@ -107,7 +107,7 @@ def main():
                                         'publons_name': ''})
 
         if researchers_info:
-            with open(join(config['output'], 'publons_info.csv'), 'a', newline='') as f:
+            with open(publons_file, 'a', newline='') as f:
                 csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
                 for researcher_info in researchers_info:
                     csv_writer.writerow([researcher_info['usp_id'], researcher_info['usp_name'], researcher_info['publons_id'], researcher_info['publons_name']])
@@ -115,7 +115,7 @@ def main():
         print('Dados recuperados do departamento: ', dept, flush=True)
         depts.append(dept)
 
-        with open(join(config['output'], 'depts_recovered.txt'), 'w', newline='') as f:
+        with open(depts_recovered_file, 'w', newline='') as f:
             print('Escrevendo arquivo com departamento recuperado...')
             f.write(','.join(depts))
 

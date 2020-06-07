@@ -80,7 +80,7 @@ def main():
                 print('Sem dados da unidade: ', unit, flush=True)
                 units.append(unit)
 
-                with open(join(config['people'], 'units_recovered.txt'), 'w', newline='') as f:
+                with open(units_recovered_file, 'w', newline='') as f:
                     print('Escrevendo arquivo com unidade recuperada...')
                     f.write(','.join(units))
 
@@ -185,7 +185,7 @@ def main():
         print('Dados recuperados da unidade: ', unit, flush=True)
         units.append(unit)
 
-        with open(join(config['people'], 'units_recovered.txt'), 'w', newline='') as f:
+        with open(units_recovered_file, 'w', newline='') as f:
             print('Escrevendo arquivo com unidade recuperada...')
             f.write(','.join(units))
 
