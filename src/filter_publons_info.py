@@ -15,7 +15,7 @@ from os.path import join, exists
 
 def main():
     # Define IDs a serem removidos
-    usp_ids = [87922,43141,74970,70472,3388141,47569,1915576,41890,60745,92911,4827333,1075420,2091563,96338]
+    usp_ids = [87922,43141,74970,70472,3388141,35614,47569,41890,1075420,2091563,96338,33546]
 
     with open('../config.json') as f:
         config = json.load(f)
