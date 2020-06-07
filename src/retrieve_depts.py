@@ -19,14 +19,15 @@ from general import get_files
 
 def get_depts(units, path):
     s = requests.Session()
-    i = 0
+    wait_time = [3, 5, 7, 9]
     saved_units = units
+    i = 0
+
     for unit in units:
         print('Recuperando dados de departamento da unidade: ', unit, flush=True)
 
         if i == 4:
             i = 0
-        wait_time = [3, 5, 7, 9]
         time.sleep(wait_time[i])
         i = i + 1
 

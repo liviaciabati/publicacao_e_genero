@@ -5,7 +5,7 @@ Updated on Apr 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
-@objective: Remove ids publons duplicados
+@objective: Remove ids publons duplicados e faltantes (missing_id)
 '''
 
 import json
@@ -52,10 +52,11 @@ def remove_duplicates_and_missing(path, publons_file):
                     csv_writer.writerow(line.split(','))
                 duplicates.append(line)
 
-    print('Nr. de ids: ', count_rows)
+    print('Nr. de ids totais: ', count_rows)
     print('Nr. de ids exclusivos e not missing: ', len(lines_seen))
     print('Nr. de ids duplicados: ', len(duplicates))
     print('Nr. de ids missing: ', missing)
+    print('Extra:')
     print('Nr. de ids mais de uma vez duplicados: ', len(duplicates) - len(set(duplicates)))
     return parsed_file
 
@@ -95,7 +96,7 @@ def main():
     with open('../config.json') as f:
         config = json.load(f)
 
-    path = config['output']
+    path = config['publons_info']
     if not exists(path):
         print('Nenhum dado a ser deduplicados.')
         return 0

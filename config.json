@@ -1,5 +1,6 @@
 {
     "depts":"../depts/",
     "people":"../people/",
-    "output":"../output/"
+    "publons_info":"../publons/info",
+    "publons_data":"../publons/data"
 }

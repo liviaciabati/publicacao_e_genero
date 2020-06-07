@@ -1,7 +1,7 @@
 # Pastas que receberão arquivos de Output
 depts/*
 people/*
-output/*
+publons/*
 
 # Arquivos de configuração
 config.json

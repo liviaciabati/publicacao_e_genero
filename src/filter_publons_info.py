@@ -20,14 +20,14 @@ def main():
     with open('../config.json') as f:
         config = json.load(f)
 
-    path = config['output']
+    path = config['publons_info']
     if not exists(path):
-        print('Nenhum dado a ser deduplicados.')
+        print('Nenhum dado a ser filtrado.')
         return 0
 
     publons_file = join(path, 'publons_info_unique.csv')
     if exists(publons_file) == False:
-        print('Nenhum dado a ser deduplicados.')
+        print('Nenhum dado a ser filtrado.')
         return 0
 
     publons_info_unique_filtered = join(path, 'publons_info_unique_filtered.csv')
@@ -48,7 +48,7 @@ def main():
                 rows_mantained = rows_mantained + 1
             total_rows = total_rows + 1
 
-    with open(publons_info_unique_filtered, 'w', newline='') as f:
+    with open(publons_info_unique_filtered, 'a', newline='') as f:
         csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
         csv_writer.writerows(filtered_info)
 

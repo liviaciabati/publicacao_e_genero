@@ -37,11 +37,11 @@ def main():
         print('Nenhum dado a ser recuperado.')
         return 0
 
-    if not exists(config['output']):
-        makedirs(config['output'])
+    if not exists(config['publons_info']):
+        makedirs(config['publons_info'])
 
     # Procura departamentos recuperados previamente
-    depts_recovered_file = join(config['output'], 'depts_recovered.txt')
+    depts_recovered_file = join(config['publons_info'], 'depts_recovered.txt')
     if exists(depts_recovered_file):
         with open(depts_recovered_file, 'r') as f:
             depts = f.read().split(',')
@@ -49,7 +49,7 @@ def main():
     else:
         depts = []
 
-    publons_file = join(config['output'], 'publons_info.csv')
+    publons_file = join(config['publons_info'], 'publons_info.csv')
     if exists(publons_file) == False:
         print('Novo arquivo criado.')
         with open(publons_file, 'w', newline='') as f:
