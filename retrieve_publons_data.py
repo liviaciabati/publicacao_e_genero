@@ -5,7 +5,7 @@ Updated on Apr 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
-@objective: A partir do arquivo com os ids da API do publons, verifica se os dados do num usp ja foram coletados, se sim, pula para o proximo senao, faz a chamada para coletar as informaçoes.
+@objective: A partir do arquivo com os ids da API do publons, verifica se os dados do id usp já foram coletados, se sim, pula para o próximo senão, faz a chamada para coletar as informações.
 """
 
 import requests
