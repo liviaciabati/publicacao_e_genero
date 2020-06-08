@@ -82,8 +82,16 @@ def main():
                     response = s.get(url)
 
                 if response:
-                    with open(join(publons_data_path, usp_id + '_' + publons_id + '.json'), 'w', encoding='utf-8') as f:
-                        json.dump(response.json(), f, ensure_ascii=False, indent=4)
+                    r = response.json()
+                    if 'ready' in r and len(r.keys()) == 1:
+                        print('Sem dados de: ', usp_id)
+                        data_missing.append(usp_id)
+                        with open(data_missing_file, 'w', newline='') as f:
+                            print('Escrevendo arquivo sem resposta...')
+                            f.write(','.join(data_missing))
+                    else:
+                        with open(join(publons_data_path, usp_id + '_' + publons_id + '.json'), 'w', encoding='utf-8') as f:
+                            json.dump(response.json(), f, ensure_ascii=False, indent=4)
                 else:
                     print('Sem dados de: ', usp_id)
                     data_missing.append(usp_id)
