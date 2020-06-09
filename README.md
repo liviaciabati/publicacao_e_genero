@@ -21,7 +21,8 @@ pipenv shell
 {
     "depts":"../depts/",
     "people":"../people/",
-    "output":"../output/"
+    "publons_info":"../publons/info",
+    "publons_data":"../publons/data"
 }
 ```
 
@@ -60,4 +61,10 @@ Abra o arquivo: `publons_info_not_matching.csv` para verificar nomes que diferem
 
 ```
 python filter_publons_info.py
+```
+
+### É necessário agora obter os dados do Publons para cada pesquisador
+
+```
+python retrieve publons_data.py
 ```

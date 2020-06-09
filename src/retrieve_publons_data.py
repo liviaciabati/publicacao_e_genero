@@ -16,6 +16,8 @@ import json
 from os import makedirs
 from os.path import join, exists
 
+from general import get_files
+
 def main():
     print('Iniciando...')
     wait_time = [3, 5, 7, 9]
@@ -39,23 +41,32 @@ def main():
     if not exists(publons_data_path):
         makedirs(publons_data_path)
 
-    # Procura dados recuperados previamente
-    data_recovered_file = join(publons_data_path, 'data_analysed.txt')
-    if exists(data_recovered_file):
-        with open(data_recovered_file, 'r') as f:
+    # Procura dados analisados previamente
+    data_analysed_file = join(publons_data_path, 'data_analysed.txt')
+    if exists(data_analysed_file):
+        with open(data_analysed_file, 'r') as f:
             data_analysed = f.read().split(',')
-        print("Qtd. de dados recuperados previamente: ", len(data_analysed))
     else:
         data_analysed = []
+    print("Qtd. de dados analisados previamente: ", len(data_analysed))
+
+    # Procura dados recuperados previamente
+    data_recovered_files = get_files(publons_data_path, 'json')
+    data_recovered = []
+    if data_recovered_files:
+        for data_recovered_file in data_recovered_files:
+            usp_id = data_recovered_file.split('_')[0]
+            data_recovered.append(usp_id)
+    print("Qtd. de dados recuperados previamente: ", len(data_recovered))
 
     # Procura dados analisados previamente com problema
     data_missing_file = join(publons_data_path, 'data_missing.txt')
     if exists(data_missing_file):
         with open(data_missing_file, 'r') as f:
-            data_missing_file = f.read().split(',')
-        print("Qtd. de dados com problema previamente: ", len(data_missing_file))
+            data_missing = f.read().split(',')
     else:
         data_missing = []
+    print("Qtd. de dados com problema previamente: ", len(data_missing))
 
     with open(publons_file, 'r', newline='') as f:
             csv_reader = csv.reader(f, delimiter=',')
@@ -67,7 +78,7 @@ def main():
                 if usp_id in data_analysed:
                     continue
                 else:
-                    print('Recuperando dados de: ', usp_id, flush=True)
+                    print('Recuperando dados de: ', usp_id + '_' + publons_id, flush=True)
 
                 if i == 4:
                     i = 0
@@ -84,26 +95,24 @@ def main():
                 if response:
                     r = response.json()
                     if 'ready' in r and len(r.keys()) == 1:
-                        print('Sem dados de: ', usp_id)
+                        print('Sem dados')
                         data_missing.append(usp_id)
                         with open(data_missing_file, 'w', newline='') as f:
                             print('Escrevendo arquivo sem resposta...')
                             f.write(','.join(data_missing))
                     else:
-                        with open(join(publons_data_path, usp_id + '_' + publons_id + '.json'), 'w', encoding='utf-8') as f:
+                        with open(join(publons_data_path, usp_id + '_' +       publons_id + '.json'), 'w', encoding='utf-8') as f:
                             json.dump(response.json(), f, ensure_ascii=False, indent=4)
                 else:
-                    print('Sem dados de: ', usp_id)
+                    print('Sem dados')
                     data_missing.append(usp_id)
                     with open(data_missing_file, 'w', newline='') as f:
                         print('Escrevendo arquivo sem resposta...')
                         f.write(','.join(data_missing))
 
-                print('Dados analisados de: ', usp_id, flush=True)
                 data_analysed.append(usp_id)
-
-                with open(data_recovered_file, 'w', newline='') as f:
-                    print('Escrevendo arquivo com dado recuperado...')
+                # Escrevendo arquivo com dado recuperado
+                with open(data_analysed_file, 'w', newline='') as f:
                     f.write(','.join(data_analysed))
 
     print('Qtd. de dados analisados: ', len(data_analysed))
