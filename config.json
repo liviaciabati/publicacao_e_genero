@@ -2,5 +2,6 @@
     "depts":"../depts/",
     "people":"../people/",
     "publons_info":"../publons/info",
-    "publons_data":"../publons/data"
+    "publons_data":"../publons/data",
+    "publons_results":"../publons/results"
 }
