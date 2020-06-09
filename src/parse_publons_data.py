@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""
+'''
 Created on Dec 2019
 Updated on Apr 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
 @objective: Recupera informações do arquivo Publons de cada pesquisador.
-"""
+'''
 
 import requests
 import csv
@@ -44,7 +44,7 @@ def main():
     if exists(data_analysed_file):
         with open(data_analysed_file, 'r') as f:
             data_analysed = f.read().split(',')
-        print("Qtd. de dados recuperados previamente: ", len(data_analysed))
+        print('Qtd. de dados recuperados previamente: ', len(data_analysed))
     else:
         data_analysed = []
 

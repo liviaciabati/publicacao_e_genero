@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""
+'''
 Created on Dec 2019
 Updated on Apr 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
 @objective: A partir do arquivo com os ids da API do publons, verifica se os dados do id usp já foram coletados, se sim, pula para o próximo senão, faz a chamada para coletar as informações.
-"""
+'''
 
 import requests
 import csv
@@ -48,7 +48,7 @@ def main():
             data_analysed = f.read().split(',')
     else:
         data_analysed = []
-    print("Qtd. de dados analisados previamente: ", len(data_analysed))
+    print('Qtd. de dados analisados previamente: ', len(data_analysed))
 
     # Procura dados recuperados previamente
     data_recovered_files = get_files(publons_data_path, 'json')
@@ -57,7 +57,7 @@ def main():
         for data_recovered_file in data_recovered_files:
             usp_id = data_recovered_file.split('_')[0]
             data_recovered.append(usp_id)
-    print("Qtd. de dados recuperados previamente: ", len(data_recovered))
+    print('Qtd. de dados recuperados previamente: ', len(data_recovered))
 
     # Procura dados analisados previamente com problema
     data_missing_file = join(publons_data_path, 'data_missing.txt')
@@ -66,7 +66,7 @@ def main():
             data_missing = f.read().split(',')
     else:
         data_missing = []
-    print("Qtd. de dados com problema previamente: ", len(data_missing))
+    print('Qtd. de dados com problema previamente: ', len(data_missing))
 
     with open(publons_file, 'r', newline='') as f:
             csv_reader = csv.reader(f, delimiter=',')
@@ -105,12 +105,14 @@ def main():
                             json.dump(response.json(), f, ensure_ascii=False, indent=4)
                 else:
                     print('Sem dados')
-                    data_missing.append(usp_id)
+                    if usp_id not in data_missing:
+                        data_missing.append(usp_id)
                     with open(data_missing_file, 'w', newline='') as f:
                         print('Escrevendo arquivo sem resposta...')
                         f.write(','.join(data_missing))
-
-                data_analysed.append(usp_id)
+                
+                if usp_id not in data_analysed:
+                    data_analysed.append(usp_id)
                 # Escrevendo arquivo com dado recuperado
                 with open(data_analysed_file, 'w', newline='') as f:
                     f.write(','.join(data_analysed))

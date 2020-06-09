@@ -52,9 +52,9 @@ def main():
         csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
         csv_writer.writerows(filtered_info)
 
-    print("Qtd IDs iniciais: ", total_rows)
-    print("Qts IDs para remover: ", len(usp_ids))
-    print("Qtd IDs remanescentes: ", rows_mantained)
+    print('Qtd IDs iniciais: ', total_rows)
+    print('Qts IDs para remover: ', len(usp_ids))
+    print('Qtd IDs remanescentes: ', rows_mantained)
 
 if __name__ == '__main__':
     main()
