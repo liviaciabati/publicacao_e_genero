@@ -49,7 +49,7 @@ def main():
     all_units.sort()
 
     with open('../config.json') as f:
-            config = json.load(f)
+        config = json.load(f)
 
     if not exists(config['depts']):
         makedirs(config['depts'])
