@@ -68,55 +68,64 @@ def main():
         data_missing = []
     print('Qtd. de dados com problema previamente: ', len(data_missing))
 
+    count = 0
     with open(publons_file, 'r', newline='') as f:
             csv_reader = csv.reader(f, delimiter=',')
             next(csv_reader)
-            for row in csv_reader:
-                usp_id = row[0]
-                publons_id = row[2]
+            if count <= 2000:
+                count = count + 1
+                for row in csv_reader:
+                    usp_id = row[0]
+                    publons_id = row[2]
 
-                if usp_id in data_analysed:
-                    continue
-                else:
-                    print('Recuperando dados de: ', usp_id + '_' + publons_id, flush=True)
+                    if usp_id in data_analysed:
+                        continue
+                    else:
+                        print('Recuperando dados de: ', usp_id + '_' + publons_id, flush=True)
 
-                if i == 4:
-                    i = 0
-                time.sleep(wait_time[i])
-                i = i + 1
+                    if i == 4:
+                        i = 0
+                    time.sleep(wait_time[i])
+                    i = i + 1
 
-                url = 'https://publons.com/researcher/api/' + publons_id + '/metrics/individualStats/'
-                try:
-                    response = s.get(url)
-                except requests.exceptions.ConnectionError:
-                    time.sleep(60)
-                    response = s.get(url)
+                    url = 'https://publons.com/researcher/api/' + publons_id + '/metrics/individualStats/'
+                    try:
+                        response = s.get(url)
+                    except requests.exceptions.ConnectionError:
+                        time.sleep(60)
+                        response = s.get(url)
 
-                if response:
-                    r = response.json()
-                    if 'ready' in r and len(r.keys()) == 1:
-                        print('Sem dados')
-                        data_missing.append(usp_id)
+                    if response:
+                        r = response.json()
+                        if 'ready' in r and len(r.keys()) == 1:
+                            print('Sem dados.')
+                            if usp_id not in data_missing:
+                                data_missing.append(usp_id)
+                            with open(data_missing_file, 'w', newline='') as f:
+                                print('Escrevendo arquivo sem resposta...')
+                                f.write(','.join(data_missing))
+                        else:
+                            with open(join(publons_data_path, usp_id + '_' +       publons_id + '.json'), 'w', encoding='utf-8') as f:
+                                json.dump(response.json(), f, ensure_ascii=False, indent=4)
+                            print('Dado recuperado com sucesso.')
+                    else:
+                        print('Sem dados.')
+                        if usp_id not in data_missing:
+                            data_missing.append(usp_id)
                         with open(data_missing_file, 'w', newline='') as f:
                             print('Escrevendo arquivo sem resposta...')
                             f.write(','.join(data_missing))
-                    else:
-                        with open(join(publons_data_path, usp_id + '_' +       publons_id + '.json'), 'w', encoding='utf-8') as f:
-                            json.dump(response.json(), f, ensure_ascii=False, indent=4)
-                else:
-                    print('Sem dados')
-                    if usp_id not in data_missing:
-                        data_missing.append(usp_id)
-                    with open(data_missing_file, 'w', newline='') as f:
-                        print('Escrevendo arquivo sem resposta...')
-                        f.write(','.join(data_missing))
-                
-                if usp_id not in data_analysed:
-                    data_analysed.append(usp_id)
-                # Escrevendo arquivo com dado recuperado
-                with open(data_analysed_file, 'w', newline='') as f:
-                    f.write(','.join(data_analysed))
+                    
+                    if usp_id not in data_analysed:
+                        data_analysed.append(usp_id)
+                    # Escrevendo arquivo com dado recuperado
+                    with open(data_analysed_file, 'w', newline='') as f:
+                        f.write(','.join(data_analysed))
+            else:
+                print('Limite atingido. Por favor, execute esse sript novamente em 24 horas.')
 
+    print('------')
+    print('Requisitados hoje: ', count-1)
     print('Qtd. de dados analisados: ', len(data_analysed))
     print('Qtd. de dados recuperados: ', len(data_analysed) - len(data_missing))
     print('Sem dados: ', len(data_missing))
