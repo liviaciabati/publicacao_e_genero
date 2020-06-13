@@ -5,7 +5,7 @@ Updated on Apr 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
-@objective: Funções genéricas
+@objective: Funções genéricas.
 '''
 
 from os import listdir

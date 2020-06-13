@@ -5,7 +5,7 @@ Updated on Apr 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
-@objective: A partir de arquivos com as urls do "web of science", converte o "researcher indentifier" para o identificador da API publons e salva o resultado em um arquivo
+@objective: A partir de arquivos com as urls do 'web of science', converte o 'researcher indentifier' para o identificador da API publons e salva o resultado em um arquivo.
 '''
 
 import requests
@@ -45,7 +45,7 @@ def main():
     if exists(depts_recovered_file):
         with open(depts_recovered_file, 'r') as f:
             depts = f.read().split(',')
-        print("Departamentos recuperados previamente: ", len(depts))
+        print('Departamentos recuperados previamente: ', len(depts))
     else:
         depts = []
 
@@ -94,7 +94,7 @@ def main():
                         publons_id = page.find('meta',
                         attrs={'property':'og:url'})['content'].split('/')[4]
 
-                        publons_name = page.find("meta", attrs={"property":"og:url"})['content'].split("/")[5]
+                        publons_name = page.find('meta', attrs={'property':'og:url'})['content'].split('/')[5]
 
                         researchers_info.append({'usp_id': usp_id,
                                         'usp_name': usp_name,

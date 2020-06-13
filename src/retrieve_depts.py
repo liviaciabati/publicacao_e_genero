@@ -5,7 +5,7 @@ Updated on Apr 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
-@objective: Recupera departamentos de cada unidade da USP
+@objective: Recupera departamentos de cada unidade da USP.
 '''
 
 import requests

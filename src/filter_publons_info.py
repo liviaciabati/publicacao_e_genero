@@ -5,7 +5,7 @@ Updated on Apr 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
-@objective: Remove ids com nomes que não batem (usp e publons)
+@objective: Remove ids com nomes que não batem (usp e publons).
 '''
 
 import json
