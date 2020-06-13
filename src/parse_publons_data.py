@@ -56,7 +56,6 @@ def main():
                 data_analysed.add(','.join(row))
         print('Qtd. de dados recuperados previamente: ', len(data_analysed))
 
-    print(files)
     print('Processando dados')
     for file in files:
         publons_file = join(publons_data_path, file)
