@@ -64,6 +64,8 @@ def main():
     if exists(data_missing_file):
         with open(data_missing_file, 'r') as f:
             data_missing = f.read().split(',')
+        if len(data_missing) == 1 and data_missing.pop() == '':
+            data_missing = []
     else:
         data_missing = []
     print('Qtd. de dados com problema previamente: ', len(data_missing))
@@ -72,8 +74,7 @@ def main():
     with open(publons_file, 'r', newline='') as f:
             csv_reader = csv.reader(f, delimiter=',')
             next(csv_reader)
-            if count <= 2000:
-                count = count + 1
+            if count < 2000:
                 for row in csv_reader:
                     usp_id = row[0]
                     publons_id = row[2]
@@ -95,6 +96,7 @@ def main():
                         time.sleep(60)
                         response = s.get(url)
 
+                    count = count + 1
                     if response:
                         r = response.json()
                         if 'ready' in r and len(r.keys()) == 1:
@@ -125,7 +127,7 @@ def main():
                 print('Limite atingido. Por favor, execute esse sript novamente em 24 horas.')
 
     print('------')
-    print('Requisitados hoje: ', count-1)
+    print('Requisitados: ', count)
     print('Qtd. de dados analisados: ', len(data_analysed))
     print('Qtd. de dados recuperados: ', len(data_analysed) - len(data_missing))
     print('Sem dados: ', len(data_missing))
