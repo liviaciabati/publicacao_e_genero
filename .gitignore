@@ -9,4 +9,5 @@ config.json
 # Arquivos relcionados à execução do código
 src/.vscode
 src/__pycache__/
+src/*.pyc
 
