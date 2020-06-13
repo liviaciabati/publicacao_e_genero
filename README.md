@@ -64,7 +64,14 @@ python filter_publons_info.py
 ```
 
 ### É necessário agora obter os dados do Publons para cada pesquisador
+#### Como há um limite de 2000 requisições por dia, limitamos cada execução do script a 2000 ciclos
+#### No atual estudo foram necessários 2 dias para recuperar todos os dados
+```
+python retrieve publons_data.py
+```
+### [OPCIONAL] Caso seja necesário tentar recuperar dados que falharam, o script abaixo pode ser executado seguido do script anterior:
 
 ```
+python retry_missing_publons.py
 python retrieve publons_data.py
 ```
