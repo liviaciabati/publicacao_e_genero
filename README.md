@@ -69,7 +69,7 @@ python filter_publons_info.py
 ```
 python retrieve publons_data.py
 ```
-### [OPCIONAL] Caso seja necesário tentar recuperar dados que falharam, o script abaixo pode ser executado seguido do script anterior:
+#### (OPCIONAL) Se for necesário recuperar dados que falharam, os scripts abaixo devem ser executados
 
 ```
 python retry_missing_publons.py
