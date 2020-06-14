@@ -96,3 +96,11 @@ Com base em dados do CENSO de 2010 (https://brasil.io/dataset/genero-nomes/nomes
 ```
 python identify_gender.py
 ```
+### ATENÇÃO - Passo Manual
+Acesse o portal de transparência da USP
+
+[https://uspdigital.usp.br/portaltransparencia/portaltransparenciaListar](https://uspdigital.usp.br/portaltransparencia/portaltransparenciaListar)
+
+1. Clique em: _Registro atual de todos os docentes / funcionários (arquivo texto)_
+2. Preencha o CAPTCHA
+3. Faça o Download do arquivo e copie-o para a pasta: `resources`
