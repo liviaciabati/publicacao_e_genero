@@ -8,7 +8,6 @@ Updated on Apr 2020
 @objective: Recupera informações do arquivo Publons de cada pesquisador.
 '''
 
-import requests
 import csv
 import time
 import json
