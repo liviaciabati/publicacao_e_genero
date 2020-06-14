@@ -91,7 +91,8 @@ python retrieve publons_data.py
 ```
 
 ### O próximo passo é identificar o gênero dos pesquisadores
-#### Com base em dados do CENSO de 2010 (https://brasil.io/dataset/genero-nomes/nomes/?=format=csv), execute o script abaixo
+Com base em dados do CENSO de 2010 (https://brasil.io/dataset/genero-nomes/nomes/?=format=csv)
+#### Execute o script abaixo
 ```
 python identify_gender.py
 ```
