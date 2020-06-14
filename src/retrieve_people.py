@@ -21,7 +21,7 @@ from general import get_files
 def main():
     url_professors = 'https://uspdigital.usp.br/datausp/servicos/publico/citacoes/docentes/'
 
-    headings = ['google',
+    heading = ['google',
                 'scopus',
                 'web_of_science',
                 'link_google',
@@ -178,7 +178,7 @@ def main():
 
                 with open(join(config['people'], str(unit) +'_'+ str(dept['codset']) + '.csv'), 'w', newline='') as f:
                     csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
-                    csv_writer.writerow(headings)
+                    csv_writer.writerow(heading)
                     if information:
                         csv_writer.writerows(information)
 
