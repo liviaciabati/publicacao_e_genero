@@ -60,7 +60,7 @@ def main():
         publons_file = join(publons_data_path, file)
         usp_id = file.split('_')[0]
 
-        # Lê arquivo de departamentos
+        # Lê arquivo publons
         with open(publons_file, 'r', encoding='utf-8') as f:
             if f.read(2) != '[]' and f.read(2) != '':
                 f.seek(0)

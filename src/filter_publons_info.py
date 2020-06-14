@@ -33,7 +33,8 @@ def main():
     publons_info_unique_filtered = join(path, 'publons_info_unique_filtered.csv')
     with open(publons_info_unique_filtered, 'w', newline='') as f:
         csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
-        csv_writer.writerow(['usp_id', 'usp_name', 'publons_id', 'publons_name'])
+        csv_writer.writerow(['usp_id', 'usp_name', 'usp_unit',
+                                        'usp_dept', 'publons_id', 'publons_name'])
 
     # Removendo ids
     filtered_info = []

@@ -54,20 +54,23 @@ def main():
         print('Novo arquivo criado.')
         with open(publons_file, 'w', newline='') as f:
             csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
-            csv_writer.writerow(['usp_id', 'usp_name', 'publons_id', 'publons_name'])
+            csv_writer.writerow(['usp_id', 'usp_name', 'usp_unit', 'usp_dept','publons_id', 'publons_name'])
 
     i = 0
     for file in files:
-        dept = file[:-4]
+        file_name = file.split('_')
+        unit = file_name[0]
+        dept = file_name[1][:-4]
+        unit_dept = unit + '_' + dept
         researchers_info = []
 
-        if dept in depts:
-            print('Departamento recuperado previamente: ', dept, flush=True)
+        if unit_dept in depts:
+            print('Departamento recuperado previamente: ', unit_dept, flush=True)
             continue
         else:
-            print('Recuperando dados do departamento: ', dept, flush=True)
+            print('Recuperando dados do departamento: ', unit_dept, flush=True)
 
-        with open(join(config['people'], file), 'r', newline='') as csv_file:
+        with open(join(config['people'], file), 'r', newline='', encoding='latin-1') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             next(csv_reader)
             for row in csv_reader:
@@ -98,11 +101,15 @@ def main():
 
                         researchers_info.append({'usp_id': usp_id,
                                         'usp_name': usp_name,
+                                        'usp_unit': unit,
+                                        'usp_dept': dept,
                                         'publons_id': publons_id,
                                         'publons_name': publons_name})
                     else:
                         researchers_info.append({'usp_id': usp_id,
                                         'usp_name': usp_name,
+                                        'usp_unit': unit,
+                                        'usp_dept': dept,
                                         'publons_id': 'missing_id',
                                         'publons_name': ''})
 
@@ -110,10 +117,10 @@ def main():
             with open(publons_file, 'a', newline='') as f:
                 csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
                 for researcher_info in researchers_info:
-                    csv_writer.writerow([researcher_info['usp_id'], researcher_info['usp_name'], researcher_info['publons_id'], researcher_info['publons_name']])
+                    csv_writer.writerow([researcher_info['usp_id'], researcher_info['usp_name'], researcher_info['usp_unit'], researcher_info['usp_dept'], researcher_info['publons_id'], researcher_info['publons_name']])
 
-        print('Dados recuperados do departamento: ', dept, flush=True)
-        depts.append(dept)
+        print('Dados recuperados do departamento: ', unit_dept, flush=True)
+        depts.append(unit_dept)
 
         with open(depts_recovered_file, 'w', newline='') as f:
             print('Escrevendo arquivo com departamento recuperado...')
