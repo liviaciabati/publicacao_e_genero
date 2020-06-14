@@ -68,8 +68,8 @@ python parse_publons_info.py
 
 Abra o arquivo: `publons_info_not_matching.csv` para verificar nomes que diferem entre USP e Publons
 
-### Em seguida, remova esses ids
-#### Basta adicionar o vetor de números USP selecionados no script python abaixo
+### Em seguida, remova os ids quando constatar que os pesquisadores não são a mesma pessoa
+#### Basta adicionar o vetor de ids USP selecionados no script python abaixo
 
 ```
 python filter_publons_info.py
@@ -78,17 +78,20 @@ python filter_publons_info.py
 ### É necessário agora obter os dados do Publons para cada pesquisador
 #### Como há um limite de 2000 requisições por dia, limitamos cada execução do script a 2000 ciclos
 #### No atual estudo foram necessários 2 dias para recuperar todos os dados
+
 ```
 python retrieve publons_data.py
 ```
+
 #### (OPCIONAL) Se for necesário recuperar dados que falharam, os scripts abaixo podem ser executados
 
 ```
 python retry_missing_publons.py
 python retrieve publons_data.py
 ```
+
 ### O próximo passo é identificar o gênero dos pesquisadores
-#### Com base em dados do CENSO de 2010.](https://brasil.io/dataset/genero-nomes/nomes/?=format=csv)
+#### Com base em dados do CENSO de 2010 (https://brasil.io/dataset/genero-nomes/nomes/?=format=csv), execute o script abaixo
 ```
 python identify_gender.py
 ```
