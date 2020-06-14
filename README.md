@@ -2,9 +2,14 @@
 
 Por favor, consulte a nossa publicação no [link]().
 
-Em seguide, explicamos passo-a-passo como realizar a coleta de dados e ánalise.
+Nós disponibilizamos o nosso arquivo final processado para análise no seguinte [link]().
+
+Para outras questões, por favor, contate a pesquisadora principal: [livia.ciabatti@usp.br](malito:livia.ciabatti@usp.br)
+
 É importante ressaltar que os dados que colhemos são de domínio público.
-Também é preciso saber que atualizações occorem tanto em páginas da USP quanto no Publons, portanto os números no artigo podem diferir.
+Também é preciso saber que atualizações occorem tanto em páginas da Universidade de São Paulo (USP) quanto no Publons, portanto os números no artigo podem diferir um pouco.
+
+Em seguide, explicamos passo-a-passo como realizar a coleta de dados e ánalise.
 
 ## Primeio iniciei seu ambiente pip
 
@@ -15,18 +20,25 @@ pipenv install
 ```
 pipenv shell
 ```
+
 ## (Opcional) Modifique os `paths` no arquivo config.json
 
 ```json
 {
     "depts":"../depts/",
     "people":"../people/",
+    "resources":"../resources/",
     "publons_info":"../publons/info",
-    "publons_data":"../publons/data"
+    "publons_data":"../publons/data",
+    "publons_results":"../publons/results"
 }
 ```
 
-## Em seguida execute os seguintes `python scripts`
+## Em seguida, entre na seguite pasta e execute os seguintes `python scripts`
+
+```
+cd src
+```
 
 ### Para recuperar departamentos da USP
 
@@ -40,13 +52,13 @@ pipenv shell
 python retrieve_people.py
 ```
 
-### Obtenha os ids publons
+### Para obter os ids publons dos pesquisadores
 
 ```
 python retrieve_publons_info.py
 ```
 
-### Remova ids publons duplicados, faltantes e verifique nomes que não são similares aos nomes usp
+### Para remover os ids publons duplicados, faltantes e verificar nomes que não são similares aos nomes USP
 
 ```
 python parse_publons_info.py
@@ -69,9 +81,14 @@ python filter_publons_info.py
 ```
 python retrieve publons_data.py
 ```
-#### (OPCIONAL) Se for necesário recuperar dados que falharam, os scripts abaixo devem ser executados
+#### (OPCIONAL) Se for necesário recuperar dados que falharam, os scripts abaixo podem ser executados
 
 ```
 python retry_missing_publons.py
 python retrieve publons_data.py
+```
+### O próximo passo é identificar o gênero dos pesquisadores
+#### Com base em dados do CENSO de 2010.](https://brasil.io/dataset/genero-nomes/nomes/?=format=csv)
+```
+python identify_gender.py
 ```

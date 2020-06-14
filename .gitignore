@@ -1,7 +1,8 @@
-# Pastas que receberão arquivos de Output
+# Pastas que recebem arquivos gerados durante a execução de scripts
 depts/*
 people/*
 publons/*
+resources/*
 
 # Arquivos de configuração
 config.json
@@ -10,4 +11,3 @@ config.json
 src/.vscode
 src/__pycache__/
 src/*.pyc
-

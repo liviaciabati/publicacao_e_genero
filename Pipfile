@@ -11,3 +11,6 @@ beautifulsoup4 = "*"
 
 [requires]
 python_version = "3.6"
+
+[scripts]
+identify_gender = 'python identify_gender.py'

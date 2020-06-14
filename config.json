@@ -1,6 +1,7 @@
 {
     "depts":"../depts/",
     "people":"../people/",
+    "resources":"../resources/",
     "publons_info":"../publons/info",
     "publons_data":"../publons/data",
     "publons_results":"../publons/results"
