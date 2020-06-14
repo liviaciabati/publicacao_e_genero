@@ -30,8 +30,8 @@ def main():
         print('Nenhum dado a ser recuperado.')
         return 0
 
-    publons_file = join(publons_info_path, 'publons_info_unique_filtered.csv')
-    if exists(publons_file) == False:
+    publons_info = join(publons_info_path, 'publons_info_unique_filtered.csv')
+    if exists(publons_info) == False:
         print('Nenhum dado a ser recuperado.')
         return 0
 
@@ -67,25 +67,48 @@ def main():
     
     # Fazendo o match de nomes de pesquisador com o gênero
     print('Fazendo o match de nomes de pesquisador com o gênero.')
-    with open(publons_file, 'r', newline='') as f:
+    with open(publons_info, 'r', newline='') as f:
         csv_reader = csv.reader(f, delimiter=',')
         next(csv_reader)
         rows = []
+        researchers = dict()
         for row in csv_reader:
+            usp_id = row[0]
             researcher_name = row[1].split('-')[0]
             if researcher_name in names:
                 row.append(names[researcher_name])
+                researchers[usp_id] = names[researcher_name]
             else:
                 row.append('not_found')
             rows.append(row)
 
     # Escreve novo arquivo com informação de gênero
-    print('Novo arquivo criado.')
-    publons_file_with_gender = join(publons_info_path, 'publons_info_unique_filtered_gender.csv')
-    with open(publons_file_with_gender, 'w', newline='') as f:
+    print('Novo arquivo criado com nome e gênero.')
+    publons_info_with_gender = join(publons_info_path, 'publons_info_unique_filtered_gender.csv')
+    with open(publons_info_with_gender, 'w', newline='') as f:
             csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
             csv_writer.writerow(['usp_id', 'usp_name', 'publons_id', 'publons_name','gender'])
             csv_writer.writerows(rows)
+
+    # Atualizando resultados Publons com gênero
+    publons_results_path = config['publons_results']
+    publons_results = join(publons_results_path, 'results_publons.csv')
+    with open(publons_results, 'r', newline='') as f:
+        csv_reader = csv.reader(f, delimiter=',')
+        next(csv_reader)
+        publons_data = []
+        for row in csv_reader:
+            usp_id = row[0].split('-')[0]
+            if usp_id in researchers:
+                row.append(researchers[usp_id])
+                publons_data.append(row)
+
+    print('Novo arquivo criado com dados Publons e gênero.')
+    publons_results_with_gender = join(publons_results_path, 'results_publons_gender.csv')
+    with open(publons_results_with_gender, 'w', newline='') as f:
+            csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
+            csv_writer.writerow(['usp_id','nr_wos_publication','citations','h_index','gender'])
+            csv_writer.writerows(publons_data)
 
 if __name__ == '__main__':
     main()
