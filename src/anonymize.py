@@ -12,8 +12,8 @@ Updated on Jun 2020
 
 import json
 import random
+from os.path import exists, getsize, join
 
-from os.path import join, exists, getsize
 
 def main():
     print('Iniciando...')

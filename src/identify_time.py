@@ -12,11 +12,11 @@ Updated on Jun 2020
 
 import csv
 import json
-
 from os import makedirs
-from os.path import join, exists, getsize
+from os.path import exists, getsize, join
 
 from general import remove_accent_mark
+
 
 def main():
     print('Iniciando...')
@@ -69,7 +69,7 @@ def main():
             else:
                 row.append('time_not_found')
             rows.append(row)
-    
+
     # Escreve novo arquivo com informação de tempo de trabalho
     print('Novo arquivo criado com gênero e tempo de trabalho.')
     publons_info_gender_time = join(publons_info_path, 'publons_info_unique_filtered_gender_time.csv')

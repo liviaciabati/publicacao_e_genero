@@ -9,13 +9,13 @@ Updated on Apr 2020
 '''
 
 import csv
-import time
 import json
-
+import time
 from os import makedirs
-from os.path import join, exists
+from os.path import exists, join
 
 from general import get_files
+
 
 def main():
     print('Iniciando...')
@@ -83,7 +83,7 @@ def main():
                 with open(publons_result_file, 'a', newline='') as f:
                     csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
                     csv_writer.writerow([usp_id, data['numPublicationsInWos'], data['timesCited'], data['hIndex']])
-        
+
     print('Nro de ids processados: ', len(files))
 
 if __name__ == '__main__':

@@ -5,19 +5,20 @@ Updated on Apr 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
-@objective: A partir de arquivos com as urls do 'web of science', converte o 'researcher indentifier' para o identificador da API publons e salva o resultado em um arquivo.
+@objective: A partir de arquivos com as urls do 'web of science', converte o 'researcher indentifier' para o identificador da API Publons e salva o resultado em um arquivo.
 '''
 
-import requests
 import csv
-import time
 import json
-
-from bs4 import BeautifulSoup
+import time
 from os import makedirs
-from os.path import join, exists
+from os.path import exists, join
+
+import requests
+from bs4 import BeautifulSoup
 
 from general import get_files, remove_accent_mark
+
 
 def main():
     print('Iniciando...')
@@ -75,7 +76,7 @@ def main():
             next(csv_reader)
             for row in csv_reader:
                 url_wos = row[5]
-                # O elemento 5 da row (linha) contém a url do web of science, que precisa ser transformada em id da API publon
+                # O elemento 5 da row (linha) contém a url do web of science,que é usada para obtenção do id da API do Publons
                 if url_wos != '':
                     if i == 4:
                         i = 0
@@ -88,7 +89,7 @@ def main():
                         time.sleep(60)
                         content = s.get(url_wos).text
                     page = BeautifulSoup(content, 'lxml')
-                    # Pega o id pra refazer a url
+                    # Pega o id para refazer a url
                     usp_id = row[7]
                     usp_name = remove_accent_mark((
                         row[9].lower().replace(' ','-')))

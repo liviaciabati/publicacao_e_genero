@@ -8,15 +8,16 @@ Updated on Apr 2020
 @objective: Recupera professores de cada departamento da USP.
 '''
 
-import requests
+import csv
 import json
 import time
-import csv
-
 from os import makedirs
-from os.path import join, exists
+from os.path import exists, join
+
+import requests
 
 from general import get_files
+
 
 def main():
     url_professors = 'https://uspdigital.usp.br/datausp/servicos/publico/citacoes/docentes/'

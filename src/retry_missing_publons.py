@@ -10,9 +10,10 @@ Updated on Apr 2020
 '''
 
 import json
-from os.path import join, exists
+from os.path import exists, join, makedirs
 
 from general import get_files
+
 
 def main():
     print('Iniciando...')
@@ -32,7 +33,7 @@ def main():
             usp_id = data_recovered_file.split('_')[0]
             data_recovered.append(usp_id)
     print('Qtd. de dados recuperados previamente: ', len(data_recovered))
-        
+
     # Escrevendo arquivo com dados recuperados
     data_analysed_file = join(publons_data_path, 'data_analysed.txt')
     with open(data_analysed_file, 'w', newline='') as f:
@@ -42,7 +43,7 @@ def main():
     data_missing_file = join(publons_data_path, 'data_missing.txt')
     with open(data_missing_file, 'w', newline='') as f:
         f.write('')
-    
+
     print('Qtd. de dados no novo arquivo: ', len(data_recovered))
 
 if __name__ == '__main__':

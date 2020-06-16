@@ -8,10 +8,10 @@ Updated on Apr 2020
 @objective: Remove ids com nomes que não batem (usp e publons).
 '''
 
-import json
 import csv
+import json
+from os.path import exists, join
 
-from os.path import join, exists
 
 def main():
     # Define IDs a serem removidos

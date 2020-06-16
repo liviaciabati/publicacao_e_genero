@@ -8,13 +8,13 @@ Updated on Apr 2020
 @objective: Remove ids publons duplicados e faltantes (missing_id).
 '''
 
-import json
 import csv
-
+import json
 from os import makedirs
-from os.path import join, exists
+from os.path import exists, join
 
 from general import get_files
+
 
 def remove_duplicates_and_missing(path, publons_file):
     parsed_file = join(path, 'publons_info_unique.csv')
@@ -43,14 +43,14 @@ def remove_duplicates_and_missing(path, publons_file):
                 publons_id = row[4]
                 if publons_id != 'missing_id':
                     with open(parsed_file, 'a', newline='') as f:
-                        csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
+                        csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE, escapechar='\\')
                         csv_writer.writerow(row)
                     ids_seen.add(usp_id)
                 else:
                     missing = missing + 1
             else:
                 with open(file_duplicates, 'a', newline='') as f:
-                    csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
+                    csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE, escapechar='\\')
                     csv_writer.writerow(row)
                 duplicates.append(usp_id)
 
@@ -58,7 +58,7 @@ def remove_duplicates_and_missing(path, publons_file):
     print('Nr. de ids exclusivos e not missing: ', len(ids_seen))
     print('Nr. de ids duplicados: ', len(duplicates))
     print('Nr. de ids missing: ', missing)
-    print('Extra:')
+    print('EXTRA')
     print('Nr. de ids mais de uma vez duplicados: ', len(duplicates) - len(set(duplicates)))
     return parsed_file
 
@@ -68,7 +68,7 @@ def verify_names(path, file):
     with open(file_not_matching, 'w', newline='') as f:
         csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
         csv_writer.writerow(['usp_id', 'usp_name', 'usp_unit',
-                                        'usp_dept', 'publons_id', 'publons_name'])
+                            'usp_dept', 'publons_id', 'publons_name'])
 
     count = 0
     with open(file, 'r', newline='') as f:

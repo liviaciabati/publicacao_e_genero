@@ -8,14 +8,15 @@ Updated on Apr 2020
 @objective: Recupera departamentos de cada unidade da USP.
 '''
 
-import requests
 import json
 import time
-
 from os import makedirs
-from os.path import join, exists
+from os.path import exists, join
+
+import requests
 
 from general import get_files
+
 
 def get_depts(units, path):
     s = requests.Session()

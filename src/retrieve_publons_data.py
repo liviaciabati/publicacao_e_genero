@@ -8,15 +8,16 @@ Updated on Apr 2020
 @objective: A partir do arquivo com os ids da API do publons, verifica se os dados do id usp já foram coletados, se sim, pula para o próximo senão, faz a chamada para coletar as informações.
 '''
 
-import requests
 import csv
-import time
 import json
-
+import time
 from os import makedirs
-from os.path import join, exists
+from os.path import exists, join
+
+import requests
 
 from general import get_files
+
 
 def main():
     print('Iniciando...')
@@ -117,7 +118,7 @@ def main():
                         with open(data_missing_file, 'w', newline='') as f:
                             print('Escrevendo arquivo sem resposta...')
                             f.write(','.join(data_missing))
-                    
+
                     if usp_id not in data_analysed:
                         data_analysed.append(usp_id)
                     # Escrevendo arquivo com dado recuperado
