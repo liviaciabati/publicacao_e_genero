@@ -2,7 +2,7 @@
 
 Por favor, consulte a nossa publicação no [link]().
 
-Nós disponibilizamos o nosso arquivo final processado para análise no seguinte [link]().
+Nós também disponibilizamos o nosso arquivo final processado para análise no seguinte [link]().
 
 Para outras questões, por favor, contate a pesquisadora principal: [livia.ciabatti@usp.br](malito:livia.ciabatti@usp.br)
 
@@ -34,7 +34,7 @@ pipenv shell
 }
 ```
 
-## Em seguida, entre na seguite pasta e execute os seguintes `python scripts`
+## Em seguida, entre na seguinte pasta e execute os seguintes `python scripts`
 
 ```
 cd src
@@ -69,7 +69,7 @@ python parse_publons_info.py
 Abra o arquivo: `publons_info_not_matching.csv` para verificar nomes que diferem entre USP e Publons
 
 ### Em seguida, remova os ids quando constatar que os pesquisadores não são a mesma pessoa
-#### Basta adicionar o vetor de ids USP selecionados no script python abaixo
+#### Basta adicionar os ids USP selecionados no script python abaixo
 
 ```
 python filter_publons_info.py
@@ -104,3 +104,16 @@ Acesse o portal de transparência da USP
 1. Clique em: _Registro atual de todos os docentes / funcionários (arquivo texto)_
 2. Preencha o CAPTCHA
 3. Faça o Download do arquivo e copie-o para a pasta: `resources`
+
+## Em seguida, execute o script abaixo para adicionar o tempo de trabalho dos professores e também unidade e departamento
+
+```
+python identify_time.py
+```
+
+## Por fim, criamos um scrip que remove os números USP e embaralha as linhas para que os resultados sejam compartilhados
+Lembrando: todos os dados são públicos e abertos mas, como agregamos informações de diversas bases, optamos por preservar a privacidade dos envolvidos
+```
+python anonymize.py
+```
+Com o arquivo: `publons/results/results_publons_gender_time_anonymized.csv` produzido, siga para a análise em nossos jupyter notebooks.
