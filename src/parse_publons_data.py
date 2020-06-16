@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 Created on Dec 2019
-Updated on Apr 2020
+Updated on Mai 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
@@ -60,7 +60,7 @@ def main():
         publons_file = join(publons_data_path, file)
         usp_id = file.split('_')[0]
 
-        # Lê arquivo publons
+        # Lê arquivo Publons
         with open(publons_file, 'r', encoding='utf-8') as f:
             if f.read(2) != '[]' and f.read(2) != '':
                 f.seek(0)
@@ -76,7 +76,7 @@ def main():
             if 'hIndex' not in data:
                 data['hIndex'] = ''
 
-            information = ','.join([usp_id, str(data['numPublicationsInWos']), 
+            information = ','.join([usp_id, str(data['numPublicationsInWos']),
                                     str(data['timesCited']), str(data['hIndex'])])
             if information not in data_analysed:
                 print('Dados salvos com sucesso.')

@@ -90,6 +90,12 @@ python retry_missing_publons.py
 python retrieve publons_data.py
 ```
 
+### Depois de recuperar os dados Publons, eles precisam ser processados
+
+```
+python parse_publons_data.py
+```
+
 ### O próximo passo é identificar o gênero dos pesquisadores
 Com base em dados do CENSO de 2010 (https://brasil.io/dataset/genero-nomes/nomes/?=format=csv)
 #### Execute o script abaixo

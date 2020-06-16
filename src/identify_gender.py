@@ -5,7 +5,7 @@ Updated on Jun 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
-@objective: Identificar o gênero de pesquisadores com base no CENSO de 2010.
+@objective: Identifica o gênero de pesquisadores com base no CENSO de 2010.
 
 @url https://brasil.io/dataset/genero-nomes/nomes/?=format=csv
 '''

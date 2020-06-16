@@ -5,7 +5,7 @@ Updated on Jun 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
-@objective: Identificar o tempo de trabalho de pesquisadores da USP com base no portal de transparência. Adiciona também unidade e departamento USP aos dados Publons.
+@objective: Identifica o tempo de trabalho de pesquisadores da USP com base no portal de transparência. Adiciona também unidade e departamento USP aos dados Publons.
 
 @url https://brasil.io/dataset/genero-nomes/nomes/?=format=csv
 '''
@@ -90,7 +90,7 @@ def main():
         print('Por favor, garanta que os dados publons já foram recuperados e o gênero adicionado.')
         return 0
 
-    # Atualizando resultados Publons com informação de tempo de trabalho
+    # Atualizando resultados Publons com informação de tempo de trabalho, unidade e departamento
     with open(publons_results_gender, 'r', newline='') as f:
         csv_reader = csv.reader(f, delimiter=',')
         next(csv_reader)

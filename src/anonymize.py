@@ -27,9 +27,7 @@ def main():
             print('Arquivo inexistente.')
             return 0
 
-
     publons_anonymized = join(publons_results_path, 'results_publons_gender_time_anonymized.csv')
-
     print('Anonimza e escreve novo arquivo')
     with open(publons_results_gender_time,'r') as source:
         next(source)
