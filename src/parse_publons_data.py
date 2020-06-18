@@ -85,7 +85,7 @@ def main():
             if information not in data_analysed:
                 with open(publons_result_file, 'a', newline='') as f:
                     csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
-                    csv_writer.writerow([usp_id,data['numPublicationsInWos'],data['timesCited'],data['averagePerItem'],data['averagePerYear'],data['hIndex']])
+                    csv_writer.writerow([usp_id, data['numPublicationsInWos'], data['timesCited'], data['averagePerItem'], data['averagePerYear'], data['hIndex']])
 
     print('Nro de ids processados: ', len(files))
 
