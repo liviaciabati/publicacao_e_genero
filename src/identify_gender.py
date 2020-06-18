@@ -115,7 +115,7 @@ def main():
     publons_results_with_gender = join(publons_results_path, 'results_publons_gender.csv')
     with open(publons_results_with_gender, 'w', newline='') as f:
             csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
-            csv_writer.writerow(['usp_id','nr_wos_publication','citations','h_index','gender'])
+            csv_writer.writerow(['usp_id','wos_publications','citations','citations_per_item','citations_per_year','h_index','gender'])
             csv_writer.writerows(publons_data)
 
 if __name__ == '__main__':

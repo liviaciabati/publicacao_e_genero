@@ -35,7 +35,7 @@ def main():
     data.sort()
 
     with open(publons_anonymized,'w') as target:
-        target.write('nr_wos_publication,citations,h_index,gender,time,usp_unit,usp_dept')
+        target.write('wos_publication,citations,citations_per_item,citations_per_year,h_index,gender,time,usp_unit,usp_dept')
         target.write('\n')
         for _, line in data:
             anonymized_line = line.split(',')[1:]

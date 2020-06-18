@@ -84,7 +84,7 @@ def main():
         print('Por favor, garanta que os dados publons já foram recuperados.')
         return 0
 
-    publons_results_gender = join(publons_results_path, 
+    publons_results_gender = join(publons_results_path,
                                     'results_publons_gender.csv')
     if not exists(publons_results_gender) or getsize(publons_results_gender) == 0:
         print('Por favor, garanta que os dados publons já foram recuperados e o gênero adicionado.')
@@ -107,7 +107,7 @@ def main():
     publons_results_gender_time = join(publons_results_path, 'results_publons_gender_time.csv')
     with open(publons_results_gender_time, 'w', newline='') as f:
             csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
-            csv_writer.writerow(['usp_id','nr_wos_publication','citations','h_index','gender', 'time','usp_unit','usp_dept'])
+            csv_writer.writerow(['usp_id','wos_publications','citations','citations_per_item','citations_per_year','h_index','gender','time','usp_unit','usp_dept'])
             csv_writer.writerows(publons_data)
 
 if __name__ == '__main__':

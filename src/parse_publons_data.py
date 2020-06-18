@@ -41,7 +41,7 @@ def main():
 
     # Verifica dados recuperados previamente
     publons_result_file = join(publons_results_path, 'results_publons' + '.csv')
-    heading = ['usp_id','nr_wos_publication','citations','h_index']
+    heading = ['usp_id','wos_publications','citations','citations_per_item','citations_per_year','h_index']
     data_analysed = set()
     if not exists(publons_result_file):
         with open(publons_result_file, 'w', newline='') as f:
@@ -75,14 +75,17 @@ def main():
                 data['timesCited'] = ''
             if 'hIndex' not in data:
                 data['hIndex'] = ''
+            if 'averagePerItem' not in data:
+                data['averagePerItem'] = ''
+            if 'averagePerYear' not in data:
+                data['averagePerYear'] = ''
 
             information = ','.join([usp_id, str(data['numPublicationsInWos']),
-                                    str(data['timesCited']), str(data['hIndex'])])
+                                    str(data['timesCited']), str(data['averagePerItem']), str(data['averagePerYear']), str(data['hIndex'])])
             if information not in data_analysed:
-                print('Dados salvos com sucesso.')
                 with open(publons_result_file, 'a', newline='') as f:
                     csv_writer = csv.writer(f, quoting=csv.QUOTE_NONE,          escapechar='\\')
-                    csv_writer.writerow([usp_id, data['numPublicationsInWos'], data['timesCited'], data['hIndex']])
+                    csv_writer.writerow([usp_id,data['numPublicationsInWos'],data['timesCited'],data['averagePerItem'],data['averagePerYear'],data['hIndex']])
 
     print('Nro de ids processados: ', len(files))
 
