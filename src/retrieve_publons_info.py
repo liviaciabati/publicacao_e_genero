@@ -75,8 +75,12 @@ def main():
             csv_reader = csv.reader(csv_file, delimiter=',')
             next(csv_reader)
             for row in csv_reader:
-                url_wos = row[5]
                 # O elemento 5 da row (linha) contém a url do web of science,que é usada para obtenção do id da API do Publons
+                url_wos = row[5]
+                # Pega o id para refazer a url
+                usp_id = row[7]
+                usp_name = remove_accent_mark((
+                    row[9].lower().replace(' ','-')))
                 if url_wos != '':
                     if i == 4:
                         i = 0
@@ -89,10 +93,6 @@ def main():
                         time.sleep(60)
                         content = s.get(url_wos).text
                     page = BeautifulSoup(content, 'lxml')
-                    # Pega o id para refazer a url
-                    usp_id = row[7]
-                    usp_name = remove_accent_mark((
-                        row[9].lower().replace(' ','-')))
 
                     if page.find('meta', attrs={'property':'og:url'}) != None:
                         publons_id = page.find('meta',
@@ -108,6 +108,13 @@ def main():
                                         'publons_name': publons_name})
                     else:
                         researchers_info.append({'usp_id': usp_id,
+                                        'usp_name': usp_name,
+                                        'usp_unit': unit,
+                                        'usp_dept': dept,
+                                        'publons_id': 'missing_id',
+                                        'publons_name': ''})
+                else:
+                    researchers_info.append({'usp_id': usp_id,
                                         'usp_name': usp_name,
                                         'usp_unit': unit,
                                         'usp_dept': dept,
