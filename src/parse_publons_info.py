@@ -5,7 +5,7 @@ Updated on Mai 2020
 
 @authors: Livia Ciabati, Ariane Sasso
 
-@objective: Remove ids publons duplicados e faltantes (missing_id).
+@objective: Remove ids publons duplicados, faltantes (missing_id) e identifica divergências entre o nome USP e o nome Publons.
 '''
 
 import csv
