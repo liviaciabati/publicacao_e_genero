@@ -7,6 +7,11 @@ verify_ssl = true
 requests = "*"
 beautifulsoup4 = "*"
 lxml = "*"
+jupyter = "*"
+pandas = "*"
+matplotlib = "*"
+numpy = "*"
+scipy = "*"
 
 [requires]
 python_version = "3.6"
