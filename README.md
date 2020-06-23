@@ -3,13 +3,14 @@
 Por favor, consulte a nossa publicação no [link]().
 
 Nós também disponibilizamos o nosso arquivo final processado para análise no seguinte [link]().
+Mais a cópia do nosso `jupyter notebook` com nossa análise final no [link]().
 
 Para outras questões, por favor, contate a pesquisadora principal: [livia.ciabatti@usp.br](malito:livia.ciabatti@usp.br)
 
 É importante ressaltar que os dados que colhemos são de domínio público.
-Também é preciso saber que atualizações occorem tanto em páginas da Universidade de São Paulo (USP) quanto no Publons, portanto os números no artigo podem diferir um pouco.
+Também, que atualizações occorem tanto em páginas da Universidade de São Paulo (USP) quanto no Publons, portanto os números no artigo podem diferir um pouco.
 
-Em seguide, explicamos passo-a-passo como realizar a coleta de dados e ánalise.
+Em seguida, explicamos passo-a-passo como realizar a coleta de dados e ánalise.
 
 ## Primeio iniciei seu ambiente pip
 
@@ -58,7 +59,7 @@ python retrieve_people.py
 python retrieve_publons_info.py
 ```
 
-### Para remover os ids publons duplicados, faltantes e verificar nomes que não são similares aos nomes USP
+### Para remover os ids publons duplicados, faltantes e verificar nomes que são diferentes dos nomes USP
 
 ```
 python parse_publons_info.py
@@ -117,9 +118,9 @@ Acesse o portal de transparência da USP
 python identify_time.py
 ```
 
-## Por fim, criamos um scrip que remove os números USP e embaralha as linhas para que os resultados sejam compartilhados
+## Por fim, criamos um script que remove os números USP e embaralha as linhas para que os resultados sejam compartilhados
 Lembrando: todos os dados são públicos e abertos mas, como agregamos informações de diversas bases, optamos por preservar a privacidade dos envolvidos
 ```
 python anonymize.py
 ```
-Com o arquivo: `publons/results/results_publons_gender_time_anonymized.csv` produzido, siga para a análise em nossos jupyter notebooks.
+Com o arquivo: `publons/results/results_publons_gender_time_anonymized.csv` produzido, siga para a análise em nossos jupyter notebooks. Execute as células para verificar os resultados.
