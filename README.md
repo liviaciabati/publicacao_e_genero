@@ -5,7 +5,7 @@ Por favor, consulte a nossa publicação no [link]().
 Nós também disponibilizamos o nosso arquivo final processado para análise no seguinte [link]().
 Mais a cópia do nosso `jupyter notebook` com a análise final no [link]().
 
-Para outras questões, por favor, contate a pesquisadora principal: [livia.ciabatti@usp.br](malito:livia.ciabatti@usp.br)
+Para outras questões, por favor, contate a pesquisadora principal: livia.ciabatti@usp.br
 
 É importante ressaltar que os dados que colhemos são de domínio público.
 Também, que atualizações occorem tanto em páginas da Universidade de São Paulo (USP) quanto no Publons, portanto os números no artigo podem diferir um pouco.
