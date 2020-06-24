@@ -12,8 +12,13 @@ Também, que atualizações occorem tanto em páginas da Universidade de São Pa
 
 Em seguida, explicamos passo-a-passo como realizar a coleta de dados e ánalise.
 
-## Primeio iniciei seu ambiente pip
+## Primeio clone nosso repositório do github
 
+```
+git clone https://github.com/liviaciabati/publicacao_e_genero.git
+```
+
+## Depois da clonagem, iniciei seu ambiente pip dentro do repositório
 ```
 pipenv install
 ```
