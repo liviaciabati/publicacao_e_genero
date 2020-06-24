@@ -3,7 +3,7 @@
 Por favor, consulte a nossa publicação no [link]().
 
 Nós também disponibilizamos o nosso arquivo final processado para análise no seguinte [link]().
-Mais a cópia do nosso `jupyter notebook` com nossa análise final no [link]().
+Mais a cópia do nosso `jupyter notebook` com a análise final no [link]().
 
 Para outras questões, por favor, contate a pesquisadora principal: [livia.ciabatti@usp.br](malito:livia.ciabatti@usp.br)
 
