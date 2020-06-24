@@ -71,7 +71,7 @@ def main():
         else:
             print('Recuperando dados do departamento: ', unit_dept, flush=True)
 
-        with open(join(config['people'], file), 'r', newline='', encoding='latin-1') as csv_file:
+        with open(join(config['people'], file), 'r', newline='', encoding='utf-8') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             next(csv_reader)
             for row in csv_reader:
