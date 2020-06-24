@@ -128,4 +128,10 @@ Lembrando: todos os dados são públicos e abertos mas, como agregamos informaç
 ```
 python anonymize.py
 ```
-Com o arquivo: `publons/results/results_publons_gender_time_anonymized.csv` produzido, siga para a análise em nossos jupyter notebooks. Execute as células para verificar os resultados.
+
+Com os arquivos de output e o arquivo vinal: `publons/results/results_publons_gender_time_anonymized.csv`, siga para a análise em nossos jupyter notebooks. 
+```
+pipenv run jupyter notebook
+```
+
+Execute as células para verificar os resultados.
