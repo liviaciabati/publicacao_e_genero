@@ -12,8 +12,13 @@ Também, que atualizações occorem tanto em páginas da Universidade de São Pa
 
 Em seguida, explicamos passo-a-passo como realizar a coleta de dados e ánalise.
 
-## Primeio iniciei seu ambiente pip
+## Primeio clone nosso repositório do github
 
+```
+git clone https://github.com/liviaciabati/publicacao_e_genero.git
+```
+
+## Depois da clonagem, iniciei seu ambiente pip dentro do repositório
 ```
 pipenv install
 ```
@@ -81,7 +86,7 @@ python filter_publons_info.py
 #### No atual estudo foram necessários 2 dias para recuperar todos os dados
 
 ```
-python retrieve publons_data.py
+python retrieve_publons_data.py
 ```
 
 #### (OPCIONAL) Se for necesário recuperar dados que falharam, os scripts abaixo podem ser executados
@@ -123,4 +128,10 @@ Lembrando: todos os dados são públicos e abertos mas, como agregamos informaç
 ```
 python anonymize.py
 ```
-Com o arquivo: `publons/results/results_publons_gender_time_anonymized.csv` produzido, siga para a análise em nossos jupyter notebooks. Execute as células para verificar os resultados.
+
+Com os arquivos de output e o arquivo final: `publons/results/results_publons_gender_time_anonymized.csv`, siga para a análise em nosso `jupyter notebook`. 
+```
+pipenv run jupyter notebook
+```
+
+Execute as células para verificar os resultados.
