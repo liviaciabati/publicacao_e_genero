@@ -78,7 +78,7 @@ def main():
             if count < 2000:
                 for row in csv_reader:
                     usp_id = row[0]
-                    publons_id = row[2]
+                    publons_id = row[4]
 
                     if usp_id in data_analysed:
                         continue
