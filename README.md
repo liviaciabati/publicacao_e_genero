@@ -86,7 +86,7 @@ python filter_publons_info.py
 #### No atual estudo foram necessários 2 dias para recuperar todos os dados
 
 ```
-python retrieve publons_data.py
+python retrieve_publons_data.py
 ```
 
 #### (OPCIONAL) Se for necesário recuperar dados que falharam, os scripts abaixo podem ser executados
