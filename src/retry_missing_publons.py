@@ -10,7 +10,8 @@ Updated on Mai 2020
 '''
 
 import json
-from os.path import exists, join, makedirs
+from os import makedirs
+from os.path import exists, join
 
 from general import get_files
 
