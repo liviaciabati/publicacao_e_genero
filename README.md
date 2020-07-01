@@ -130,7 +130,8 @@ python anonymize.py
 ```
 
 Com os arquivos de output e o arquivo final: `publons/results/results_publons_gender_time_anonymized.csv`
-Siga para a análise em nossos `jupyter notebook`
+
+Siga para a análise em nossos `jupyter notebooks`
 ```
 pipenv run jupyter notebook
 ```
