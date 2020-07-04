@@ -7,8 +7,9 @@ resources/*
 # Arquivos de configuração
 config.json
 
-# Arquivos relcionados à execução do código
+# Arquivos relcionados à execução do código e sistemas operacionais
+*.ini
+src/*.pyc
 src/.vscode
 src/__pycache__/
-src/*.pyc
 notebooks/.ipynb_checkpoints/

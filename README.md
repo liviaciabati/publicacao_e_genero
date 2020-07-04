@@ -115,7 +115,7 @@ Acesse o portal de transparência da USP
 
 1. Clique em: _Registro atual de todos os docentes / funcionários (arquivo texto)_
 2. Preencha o CAPTCHA
-3. Faça o Download do arquivo e copie-o para a pasta: `resources`
+3. Clique no ícone, faça o download do arquivo e copie-o para a pasta: `resources`
 
 ## Em seguida, execute o script abaixo para adicionar o tempo de trabalho dos professores e também unidade e departamento
 
@@ -129,7 +129,9 @@ Lembrando: todos os dados são públicos e abertos mas, como agregamos informaç
 python anonymize.py
 ```
 
-Com os arquivos de output e o arquivo final: `publons/results/results_publons_gender_time_anonymized.csv`, siga para a análise em nosso `jupyter notebook`. 
+Com os arquivos de output e o arquivo final: `publons/results/results_publons_gender_time_anonymized.csv`
+
+Siga para a análise em nossos `jupyter notebooks`
 ```
 pipenv run jupyter notebook
 ```
