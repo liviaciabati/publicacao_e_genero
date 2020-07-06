@@ -12,6 +12,7 @@ pandas = "*"
 matplotlib = "*"
 numpy = "*"
 scipy = "*"
+patsy = "*"
 
 [requires]
 python_version = "3.6"
