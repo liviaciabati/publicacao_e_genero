@@ -1,6 +1,6 @@
 # Publição e Gênero
 
-Por favor, consulte a nossa publicação no [link]().
+Por favor, consulte a nossa publicação em portugues no [http://www.rsp.fsp.usp.br/wp-content/plugins/xml-to-html/include/lens/index.php/?xml=1518-8787-rsp-55-46.xml]() e em inglês no [http://www.rsp.fsp.usp.br/wp-content/plugins/xml-to-html/include/lens/index.php?xml=1518-8787-rsp-55-46.xml&lang=en].
 
 Nós também disponibilizamos o nosso arquivo final processado para análise no seguinte [link]().
 Mais a cópia do nosso `jupyter notebook` com a análise final no [link]().
